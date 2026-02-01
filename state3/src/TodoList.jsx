@@ -21,11 +21,17 @@ const TodoList = () => {
     setTasks((prev) => [...prev, newTask])
    }
 
-   const deleteTask = () => {
+   const deleteTask = (indexToDelete) => {
     setTasks((prev) => {
-        const newArr = [...prev];
-        newArr.pop();
-        return newArr;
+        return prev.filter((_,index) => index !== indexToDelete)
+    })
+   }
+
+   const deleteLast = () => {
+    setTasks((prev) => {
+       const newArr = [...prev];
+       newArr.pop();
+       return newArr;
     })
    }
 
@@ -37,7 +43,11 @@ const TodoList = () => {
             <h2>Список задач</h2>
             <ul>
                 {tasks.map((task, index) => (
-                    <li key={index}>{task}</li>
+                    <li key={index}>{task}
+                    <button 
+                        onClick={()=>deleteTask(index)}
+                        style={{ marginLeft: '20px' }}>Удалить</button>
+                    </li>
                 ))}
             </ul>
             <div style={{
@@ -46,7 +56,7 @@ const TodoList = () => {
                     justifyContent:'center'
                 }}>
                     <button onClick={addTask}>Добавить задачу</button>
-                    <button onClick={deleteTask}>Удалить</button>
+                    <button onClick={deleteLast}>Удалить последнюю</button>
             </div>
         </div>
     )
