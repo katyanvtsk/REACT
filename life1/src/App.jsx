@@ -5,8 +5,6 @@ import './App.css'
 import LifecycleComponent from './Lifecycle'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
     <LifecycleComponent/>
